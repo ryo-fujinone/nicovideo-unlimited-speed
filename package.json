@@ -1,0 +1,18 @@
+{
+  "name": "nicovideo-unlimited-speed",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "env-cmd -f .env.firefox web-ext run",
+    "build:init": "node build-init.js",
+    "build:firefox": "web-ext build --artifacts-dir=dist --source-dir=dist/src --overwrite-dest=true",
+    "build": "run-s build:init build:firefox"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "fs-extra": "^11.3.0",
+    "npm-run-all": "^4.1.5",
+    "web-ext": "^8.6.0"
+  }
+}
