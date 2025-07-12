@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "NicoVideo Unlimited Speed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ニコニコ動画の再生速度制限を回避します。再生速度の変更には他の拡張機能を使用してください。",
   "icons": {
     "128": "icons/128.png"
