@@ -23,7 +23,7 @@ const listener = (details) => {
     str += decoder.decode();
 
     // \1.media.playbackRate ... video要素のplaybackRate
-    // \2.playbackRate ... ステート
+    // this.playbackRate ... ステート
     // video要素のtimeupdateイベントとplayイベントのイベントリスナーには以下の正規表現にマッチするコードが含まれる
     const targetCodeRegex =
       /\b([a-z])\.media\.playbackRate!==this\.playbackRate&&\(\1\.media\.playbackRate=this\.playbackRate\),/;
