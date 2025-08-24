@@ -1,5 +1,5 @@
 const listener = (details) => {
-  if (!details.url.includes("PlayerVolumeBar")) {
+  if (!details.url.includes("Player")) {
     return;
   }
   if (!/\.js$/.test(details.url)) {
