@@ -24,7 +24,6 @@ const listener = (details) => {
 
     // \1.media.playbackRate ... video要素のplaybackRate
     // this.playbackRate ... ステート
-    // video要素のtimeupdateイベントとplayイベントのイベントリスナーには以下の正規表現にマッチするコードが含まれる
     const targetCodeRegex =
       /\b([a-z])\.media\.playbackRate!==this\.playbackRate&&\(\1\.media\.playbackRate=this\.playbackRate\),/;
     const gRegex = new RegExp(targetCodeRegex.source, "g");
@@ -33,10 +32,13 @@ const listener = (details) => {
 
     if (matchesArray.length === 2) {
       for (const m of matchesArray) {
-        // 元のコードを、ステート側をvideo要素のplaybackRateで上書きするコードに改変する
         const propStr1 = `${m[1]}.media.playbackRate`;
         const propStr2 = `this.playbackRate`;
-        let code = `${propStr1}!==${propStr2}&&(${propStr2}=${propStr1}),`;
+        // let code = `${propStr1}!==${propStr2}&&(${propStr2}=${propStr1}),`;
+
+        // this.setPlaybackRate ... 動画プレイヤーの再生速度変更機能で使用されるメソッド
+        const code = `${propStr1}!==${propStr2}&&(this.setPlaybackRate(${propStr1})),`;
+
         str = str.replace(targetCodeRegex, code);
       }
     }
@@ -49,5 +51,5 @@ const listener = (details) => {
 browser.webRequest.onBeforeRequest.addListener(
   listener,
   { urls: ["*://*.nicovideo.jp/*", "*://*.nimg.jp/*"] },
-  ["blocking"]
+  ["blocking"],
 );
